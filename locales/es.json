@@ -1,0 +1,186 @@
+{
+  "header": {
+    "home": "Inicio",
+    "internationalTransport": "Transporte internacional",
+    "customsClearance": "Despacho aduanero",
+    "nationalTransport": "Transporte Nacional",
+    "logisticsServices": "Servicios logísticos",
+    "tracking": "Seguimiento",
+    "login": "Iniciar sesión",
+    "clientArea": "Área del Cliente",
+    "logout": "Cerrar sesión"
+  },
+  "hero": {
+    "slide1Title": "Sus Soluciones en Comercio Exterior",
+    "slide1Description": "RDF ofrece experiencia en comercio exterior y gestión de almacenes con más de 20 años de experiencia.",
+    "slide2Title": "Confiabilidad y Eficiencia",
+    "slide2Description": "Innovación y excelencia para impulsar su negocio en el mercado internacional.",
+    "startNow": "Comenzar Ahora",
+    "learnMore": "Saber Más"
+  },
+  "services": {
+    "title": "NUESTROS SERVICIOS",
+    "internationalTransport": "TRANSPORTE INTERNACIONAL",
+    "internationalTransportDesc": "¿Necesita importar o exportar? Independientemente del servicio, tenemos acceso directo para usted.",
+    "customsClearance": "DESPACHO ADUANERO",
+    "customsClearanceDesc": "Despacho de mercancías que transitan por aduanas. Y toda la asistencia y consultoría sobre los procesos.",
+    "nationalTransport": "TRANSPORTE NACIONAL",
+    "nationalTransportDesc": "Tenemos ruta en todo el territorio nacional con énfasis en el Sur de Brasil. Con transportes rastreados y asegurados.",
+    "logisticsServices": "SERVICIOS LOGÍSTICOS",
+    "logisticsServicesDesc": "Toda su cadena logística en un solo lugar. Creamos un proyecto exclusivo para sus necesidades."
+  },
+  "contact": {
+    "title": "Contáctenos",
+    "subtitle": "Resuelva sus dudas y solicite un presupuesto personalizado",
+    "contactInfo": "Información de Contacto",
+    "address": "Dirección",
+    "addressValue": "São José dos Pinhais - PR",
+    "phone": "Teléfono",
+    "phoneValue": "+55 41 8793-8400",
+    "email": "Correo electrónico",
+    "emailValue": "ricardo.ferrante@rdflogistica.com",
+    "sendMessage": "Envíe su Mensaje",
+    "name": "Nombre",
+    "namePlaceholder": "Su nombre completo",
+    "emailPlaceholder": "su@email.com",
+    "phonePlaceholder": "(11) 99999-9999",
+    "message": "Mensaje",
+    "messagePlaceholder": "¿Cómo podemos ayudar?",
+    "submit": "Enviar Mensaje",
+    "successMessage": "¡Mensaje enviado con éxito! Nos pondremos en contacto pronto."
+  },
+  "location": {
+    "title": "Nuestra Ubicación",
+    "subtitle": "Venga a visitarnos o contáctenos para más información",
+    "address": "Dirección",
+    "addressValue": "R. Francisco Munõz Madrid, 625 - Academia, São José dos Pinhais - PR, 83070-152",
+    "viewOnMaps": "Ver en Google Maps",
+    "hours": "Horario de Atención",
+    "weekdays": "Lunes - Viernes:",
+    "weekdaysHours": "08:00 - 18:00",
+    "saturday": "Sábado:",
+    "saturdayHours": "08:00 - 12:00",
+    "sunday": "Domingo:",
+    "closed": "Cerrado"
+  },
+  "language": {
+    "select": "Seleccionar idioma",
+    "portuguese": "Portugués",
+    "english": "Inglés",
+    "spanish": "Español"
+  },
+  "whyChooseUs": {
+    "title": "¿Por qué elegir RDF?",
+    "costReduction": {
+      "title": "Reducción de costos",
+      "description": "Centralizando todas las operaciones en un solo operador es posible lograr una reducción de hasta el 20% en los costos totales de logística."
+    },
+    "efficiency": {
+      "title": "Ganancia de eficiencia",
+      "description": "Cuando comprendemos los eslabones de la cadena de suministro y su integración, podemos tener una planificación más efectiva."
+    },
+    "flexibility": {
+      "title": "Mayor flexibilidad en las operaciones logísticas",
+      "description": "La flexibilidad permite una mayor personalización para garantizar que el sistema de almacenamiento y los procesos necesarios procedan al ritmo exigido por los clientes y la industria"
+    },
+    "marketExpansion": {
+      "title": "Expandir mercados",
+      "description": "A través de los servicios puerta a puerta conecta sus mercados y expande la participación de mercado de sus operaciones."
+    },
+    "clients": "Nuestros Clientes"
+  },
+  "stats": {
+    "activeClients": "Clientes Activos",
+    "yearsExperience": "Años de Experiencia",
+    "monthlyOperations": "Operaciones Mensuales",
+    "satisfactionRate": "Tasa de Satisfacción"
+  },
+  "structure": {
+    "title": "Nuestra Estructura",
+    "warehouse": {
+      "title": "Almacén Estándar concepto Triple A",
+      "description": "Con tecnología WMS para seguimiento con estado en tiempo real."
+    },
+    "location": {
+      "title": "Ubicación Privilegiada",
+      "description": "Con acceso a las principales carreteras que conectan puertos, aeropuertos y polos industriales."
+    },
+    "technology": {
+      "title": "Tecnología dentro de la empresa",
+      "description": "Red de internet Starlink, Sistema WMS y TMS."
+    },
+    "sustainability": {
+      "title": "Sostenibilidad",
+      "description": "Paneles de energía solar, sistema de captación fluvial, 100% de los equipos de movimiento interno son eléctricos."
+    },
+    "previousImage": "Imagen anterior",
+    "nextImage": "Siguiente imagen",
+    "goToImage": "Ir a imagen"
+  },
+  "footer": {
+    "description": "Su socio de confianza en soluciones de comercio exterior y gestión de almacenes.",
+    "quickLinks": "Enlaces Rápidos",
+    "services": "Servicios",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "internationalTransport": "Transporte Internacional",
+    "customsClearance": "Despacho Aduanero",
+    "nationalTransport": "Transporte Nacional",
+    "logisticsServices": "Servicios Logísticos",
+    "copyright": "© {year} RDF Comercio Exterior e Armazens Gerais Ltda. Todos los derechos reservados."
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "subtitle": "Acceda a su área de cliente",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "su@email.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Entrar",
+    "loading": "Iniciando sesión...",
+    "invalidCredentials": "Correo electrónico o contraseña inválidos",
+    "error": "Error al iniciar sesión. Intente nuevamente.",
+    "testCredentials": "Credenciales de prueba:"
+  },
+  "clientArea": {
+    "welcome": "Bienvenido a su Área del Cliente",
+    "greeting": "Hola",
+    "logout": "Cerrar sesión",
+    "loading": "Cargando...",
+    "operations": "Operaciones",
+    "activeOperations": "Operaciones activas",
+    "tracking": "Seguimiento",
+    "trackedItems": "Artículos rastreados",
+    "documents": "Documentos",
+    "pendingDocuments": "Documentos pendientes",
+    "quickActions": "Acciones Rápidas",
+    "newOperation": "Nueva Operación",
+    "newOperationDesc": "Solicite una nueva operación de importación o exportación",
+    "trackShipment": "Rastrear Envío",
+    "trackShipmentDesc": "Siga el estado de sus mercancías",
+    "viewDocuments": "Ver Documentos",
+    "viewDocumentsDesc": "Acceda a sus documentos y certificados",
+    "newsTitle": "Noticias y Actualizaciones",
+    "newsSubtitle": "Manténgase al día con las últimas actualizaciones sobre despacho aduanero, puertos y comercio exterior",
+    "newsTag": {
+      "ports": "Puertos",
+      "customs": "Despacho Aduanero"
+    },
+    "newsDate1": "15 de Enero, 2024",
+    "newsTitle1": "Nuevo terminal de contenedores en el Puerto de Santos",
+    "newsContent1": "El Puerto de Santos inauguró un nuevo terminal que aumentará la capacidad de manejo de contenedores en un 30%, reduciendo los tiempos de espera y mejorando la eficiencia operativa.",
+    "newsDate2": "12 de Enero, 2024",
+    "newsTitle2": "Actualización en las normas de despacho aduanero",
+    "newsContent2": "La Receita Federal publicó nuevas directrices que simplifican el proceso de despacho aduanero para importaciones de bajo valor, agilizando el despacho de mercancías.",
+    "newsDate3": "10 de Enero, 2024",
+    "newsTitle3": "Puerto de Paranaguá registra récord de movimiento",
+    "newsContent3": "El Puerto de Paranaguá batió un récord histórico de movimiento de carga en el último trimestre, con énfasis en las exportaciones de granos y las importaciones de productos manufacturados.",
+    "newsDate4": "8 de Enero, 2024",
+    "newsTitle4": "Sistema digital de despacho aduanero gana nuevas funcionalidades",
+    "newsContent4": "La plataforma digital de despacho aduanero fue actualizada con nuevas funcionalidades que permiten seguimiento en tiempo real y notificaciones automáticas sobre el estado de las operaciones.",
+    "newsDate5": "5 de Enero, 2024",
+    "newsTitle5": "Mejoras en la infraestructura del Puerto de Itajaí",
+    "newsContent5": "El Puerto de Itajaí inició obras de modernización que incluyen ampliación de patios, nuevos equipos de manejo y sistema automatizado de seguimiento de carga."
+  }
+}
+

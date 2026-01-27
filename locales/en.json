@@ -1,0 +1,186 @@
+{
+  "header": {
+    "home": "Home",
+    "internationalTransport": "International Transport",
+    "customsClearance": "Customs Clearance",
+    "nationalTransport": "National Transport",
+    "logisticsServices": "Logistics Services",
+    "tracking": "Tracking",
+    "login": "Login",
+    "clientArea": "Client Area",
+    "logout": "Logout"
+  },
+  "hero": {
+    "slide1Title": "Your Foreign Trade Solutions",
+    "slide1Description": "RDF offers expertise in foreign trade and warehouse management with over 20 years of experience.",
+    "slide2Title": "Reliability and Efficiency",
+    "slide2Description": "Innovation and excellence to boost your business in the international market.",
+    "startNow": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "services": {
+    "title": "OUR SERVICES",
+    "internationalTransport": "INTERNATIONAL TRANSPORT",
+    "internationalTransportDesc": "Need to import or export? Regardless of the service, we have direct access for you.",
+    "customsClearance": "CUSTOMS CLEARANCE",
+    "customsClearanceDesc": "Clearance of goods transiting through customs. And all assistance and consulting on the processes.",
+    "nationalTransport": "NATIONAL TRANSPORT",
+    "nationalTransportDesc": "We have routes throughout the national territory with emphasis on the South of Brazil. With tracked and insured transports.",
+    "logisticsServices": "LOGISTICS SERVICES",
+    "logisticsServicesDesc": "Your entire logistics chain in one place. We create an exclusive project for your needs."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Ask your questions and request a personalized quote",
+    "contactInfo": "Contact Information",
+    "address": "Address",
+    "addressValue": "São Paulo, SP - Brazil",
+    "phone": "Phone",
+    "phoneValue": "+55 41 8793-8400",
+    "email": "Email",
+    "emailValue": "ricardo.ferrante@rdflogistica.com",
+    "sendMessage": "Send Your Message",
+    "name": "Name",
+    "namePlaceholder": "Your full name",
+    "emailPlaceholder": "your@email.com",
+    "phonePlaceholder": "(11) 99999-9999",
+    "message": "Message",
+    "messagePlaceholder": "How can we help?",
+    "submit": "Send Message",
+    "successMessage": "Message sent successfully! We will contact you soon."
+  },
+  "location": {
+    "title": "Our Location",
+    "subtitle": "Come visit us or contact us for more information",
+    "address": "Address",
+    "addressValue": "R. Francisco Munõz Madrid, 625 - Academia, São José dos Pinhais - PR, 83070-152",
+    "viewOnMaps": "View on Google Maps",
+    "hours": "Business Hours",
+    "weekdays": "Monday - Friday:",
+    "weekdaysHours": "08:00 - 18:00",
+    "saturday": "Saturday:",
+    "saturdayHours": "08:00 - 12:00",
+    "sunday": "Sunday:",
+    "closed": "Closed"
+  },
+  "language": {
+    "select": "Select language",
+    "portuguese": "Portuguese",
+    "english": "English",
+    "spanish": "Spanish"
+  },
+  "whyChooseUs": {
+    "title": "Why choose RDF?",
+    "costReduction": {
+      "title": "Cost reduction",
+      "description": "By centralizing all operations with a single operator, it is possible to achieve a reduction of up to 20% in total logistics costs."
+    },
+    "efficiency": {
+      "title": "Efficiency gain",
+      "description": "When we understand the links in the supply chain and their integration, we can have more effective planning."
+    },
+    "flexibility": {
+      "title": "Greater flexibility in logistics operations",
+      "description": "Flexibility allows for greater customization to ensure that the storage system and necessary processes proceed at the pace required by customers and the industry"
+    },
+    "marketExpansion": {
+      "title": "Expand markets",
+      "description": "Through door-to-door services, you connect your markets and expand the market share of your operations."
+    },
+    "clients": "Our Clients"
+  },
+  "stats": {
+    "activeClients": "Active Clients",
+    "yearsExperience": "Years of Experience",
+    "monthlyOperations": "Monthly Operations",
+    "satisfactionRate": "Satisfaction Rate"
+  },
+  "structure": {
+    "title": "Our Structure",
+    "warehouse": {
+      "title": "Triple A Standard Warehouse",
+      "description": "With WMS technology for on-time status tracking."
+    },
+    "location": {
+      "title": "Privileged Location",
+      "description": "With access to main highways connecting ports, airports and industrial centers."
+    },
+    "technology": {
+      "title": "Technology within the company",
+      "description": "Starlink internet network, WMS and TMS systems."
+    },
+    "sustainability": {
+      "title": "Sustainability",
+      "description": "Solar energy panels, river water collection system, 100% of internal handling equipment is electric."
+    },
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "goToImage": "Go to image"
+  },
+  "footer": {
+    "description": "Your trusted partner in foreign trade solutions and warehouse management.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "internationalTransport": "International Transport",
+    "customsClearance": "Customs Clearance",
+    "nationalTransport": "National Transport",
+    "logisticsServices": "Logistics Services",
+    "copyright": "© {year} RDF Comercio Exterior e Armazens Gerais Ltda. All rights reserved."
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Access your client area",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Sign In",
+    "loading": "Signing in...",
+    "invalidCredentials": "Invalid email or password",
+    "error": "Error signing in. Please try again.",
+    "testCredentials": "Test credentials:"
+  },
+  "clientArea": {
+    "welcome": "Welcome to your Client Area",
+    "greeting": "Hello",
+    "logout": "Logout",
+    "loading": "Loading...",
+    "operations": "Operations",
+    "activeOperations": "Active operations",
+    "tracking": "Tracking",
+    "trackedItems": "Tracked items",
+    "documents": "Documents",
+    "pendingDocuments": "Pending documents",
+    "quickActions": "Quick Actions",
+    "newOperation": "New Operation",
+    "newOperationDesc": "Request a new import or export operation",
+    "trackShipment": "Track Shipment",
+    "trackShipmentDesc": "Track the status of your goods",
+    "viewDocuments": "View Documents",
+    "viewDocumentsDesc": "Access your documents and certificates",
+    "newsTitle": "News and Updates",
+    "newsSubtitle": "Stay up to date with the latest updates on customs clearance, ports and foreign trade",
+    "newsTag": {
+      "ports": "Ports",
+      "customs": "Customs Clearance"
+    },
+    "newsDate1": "January 15, 2024",
+    "newsTitle1": "New container terminal at Port of Santos",
+    "newsContent1": "The Port of Santos inaugurated a new terminal that will increase container handling capacity by 30%, reducing waiting times and improving operational efficiency.",
+    "newsDate2": "January 12, 2024",
+    "newsTitle2": "Update on customs clearance regulations",
+    "newsContent2": "The Federal Revenue published new guidelines that simplify the customs clearance process for low-value imports, speeding up the clearance of goods.",
+    "newsDate3": "January 10, 2024",
+    "newsTitle3": "Port of Paranaguá records movement record",
+    "newsContent3": "The Port of Paranaguá broke a historical record for cargo movement in the last quarter, with emphasis on grain exports and imports of manufactured products.",
+    "newsDate4": "January 8, 2024",
+    "newsTitle4": "Digital customs clearance system gains new features",
+    "newsContent4": "The digital customs clearance platform has been updated with new features that allow real-time tracking and automatic notifications about the status of operations.",
+    "newsDate5": "January 5, 2024",
+    "newsTitle5": "Infrastructure improvements at Port of Itajaí",
+    "newsContent5": "The Port of Itajaí began modernization works that include yard expansion, new handling equipment and an automated cargo tracking system."
+  }
+}
+
