@@ -1,29 +1,32 @@
 "use client"
 
 import { useEffect } from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/AuthContext"
 import { useLanguage } from "@/contexts/LanguageContext"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { MOCK_CLIENT_OPERATIONS } from "@/lib/mock-client-operations"
 
 export default function AreaClientePage() {
-  const { user, isAuthenticated, logout } = useAuth()
+  const { user, isAuthenticated, isAuthLoading, logout } = useAuth()
   const { t } = useLanguage()
   const router = useRouter()
 
   useEffect(() => {
+    if (isAuthLoading) return
     if (!isAuthenticated) {
       router.push("/login")
     }
-  }, [isAuthenticated, router])
+  }, [isAuthLoading, isAuthenticated, router])
 
-  const handleLogout = () => {
-    logout()
+  const handleLogout = async () => {
+    await logout()
     router.push("/")
   }
 
-  if (!isAuthenticated) {
+  if (isAuthLoading || !isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -36,8 +39,7 @@ export default function AreaClientePage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <Header />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-6xl mx-auto">
+      <div className="mx-auto w-full max-w-[min(100%,min(110rem,calc(100vw-1.5rem)))] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-12">
           {/* Header da Área do Cliente */}
           <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
@@ -46,17 +48,35 @@ export default function AreaClientePage() {
                   {t("clientArea.welcome") || "Bem-vindo à sua Área do Cliente"}
                 </h1>
                 <p className="text-gray-600">
-                  {t("clientArea.greeting") || "Olá"} {user?.name}
+                  {t("clientArea.greeting") || "Olá"}{" "}
+                  {user?.name?.trim() ? user.name : user?.email}
                 </p>
                 <p className="text-sm text-gray-500 mt-1">
-                  {user?.email}
+                  {user?.companyName?.trim()
+                    ? user.companyName
+                    : t("clientArea.companyNotProvided")}
                 </p>
               </div>
               <button
+                type="button"
                 onClick={handleLogout}
-                className="mt-4 sm:mt-0 px-6 py-3 rounded-lg text-white font-semibold transition-all duration-300 hover:shadow-lg transform hover:scale-105"
-                style={{ backgroundColor: "#dc2626" }}
+                className="mt-3 sm:mt-0 inline-flex items-center gap-1.5 text-sm font-normal text-gray-500 hover:text-[#223354] transition-colors py-1.5 px-2 -mx-2 rounded-md hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2"
               >
+                <svg
+                  className="h-4 w-4 shrink-0 opacity-70"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  aria-hidden
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                  />
+                </svg>
                 {t("clientArea.logout") || "Sair"}
               </button>
             </div>
@@ -65,30 +85,41 @@ export default function AreaClientePage() {
           {/* Cards de Informações */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {/* Card de Operações */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <Link
+              href="/area-cliente/operacoes"
+              className="group block rounded-xl bg-white p-6 shadow-lg ring-1 ring-transparent transition-all hover:shadow-xl hover:ring-[#34d1b4]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#34d1b4] focus-visible:ring-offset-2"
+            >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold" style={{ color: "#223354" }}>
+                <h3 className="text-xl font-bold transition-colors group-hover:text-[#34d1b4]" style={{ color: "#223354" }}>
                   {t("clientArea.operations") || "Operações"}
                 </h3>
-                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: "#34d1b4" }}>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center transition-transform group-hover:scale-105" style={{ backgroundColor: "#34d1b4" }}>
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
               </div>
-              <p className="text-3xl font-bold mb-2" style={{ color: "#34d1b4" }}>0</p>
+              <p className="text-3xl font-bold mb-2" style={{ color: "#34d1b4" }}>
+                {MOCK_CLIENT_OPERATIONS.length}
+              </p>
               <p className="text-gray-600 text-sm">
                 {t("clientArea.activeOperations") || "Operações ativas"}
               </p>
-            </div>
+              <p className="mt-3 text-xs font-semibold text-[#34d1b4]">
+                {t("clientArea.openOperations")} →
+              </p>
+            </Link>
 
             {/* Card de Rastreamento */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <Link
+              href="/area-cliente/rastreamento"
+              className="group block rounded-xl bg-white p-6 shadow-lg ring-1 ring-transparent transition-all hover:shadow-xl hover:ring-[#34d1b4]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#34d1b4] focus-visible:ring-offset-2"
+            >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold" style={{ color: "#223354" }}>
+                <h3 className="text-xl font-bold transition-colors group-hover:text-[#34d1b4]" style={{ color: "#223354" }}>
                   {t("clientArea.tracking") || "Rastreamento"}
                 </h3>
-                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: "#34d1b4" }}>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center transition-transform group-hover:scale-105" style={{ backgroundColor: "#34d1b4" }}>
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -99,25 +130,34 @@ export default function AreaClientePage() {
               <p className="text-gray-600 text-sm">
                 {t("clientArea.trackedItems") || "Itens rastreados"}
               </p>
-            </div>
+              <p className="mt-3 text-xs font-semibold text-[#34d1b4]">
+                {t("clientArea.openTracking")} →
+              </p>
+            </Link>
 
             {/* Card de Documentos */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <Link
+              href="/area-cliente/documentos"
+              className="group block rounded-xl bg-white p-6 shadow-lg ring-1 ring-transparent transition-all hover:shadow-xl hover:ring-[#34d1b4]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#34d1b4] focus-visible:ring-offset-2"
+            >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold" style={{ color: "#223354" }}>
+                <h3 className="text-xl font-bold transition-colors group-hover:text-[#34d1b4]" style={{ color: "#223354" }}>
                   {t("clientArea.documents") || "Documentos"}
                 </h3>
-                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: "#34d1b4" }}>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center transition-transform group-hover:scale-105" style={{ backgroundColor: "#34d1b4" }}>
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 </div>
               </div>
-              <p className="text-3xl font-bold mb-2" style={{ color: "#34d1b4" }}>0</p>
+              <p className="text-3xl font-bold mb-2" style={{ color: "#34d1b4" }}>4</p>
               <p className="text-gray-600 text-sm">
                 {t("clientArea.pendingDocuments") || "Documentos pendentes"}
               </p>
-            </div>
+              <p className="mt-3 text-xs font-semibold text-[#34d1b4]">
+                {t("clientArea.openDocuments")} →
+              </p>
+            </Link>
           </div>
 
           {/* Seção de Ações Rápidas */}
@@ -135,23 +175,29 @@ export default function AreaClientePage() {
                 </p>
               </button>
 
-              <button className="p-4 rounded-lg border-2 border-gray-200 hover:border-[#34d1b4] transition-all duration-300 text-left group">
+              <Link
+                href="/area-cliente/rastreamento"
+                className="block rounded-lg border-2 border-gray-200 p-4 text-left transition-all duration-300 hover:border-[#34d1b4] group"
+              >
                 <h4 className="font-semibold mb-2 group-hover:text-[#34d1b4]" style={{ color: "#223354" }}>
                   {t("clientArea.trackShipment") || "Rastrear Envio"}
                 </h4>
                 <p className="text-sm text-gray-600">
                   {t("clientArea.trackShipmentDesc") || "Acompanhe o status das suas mercadorias"}
                 </p>
-              </button>
+              </Link>
 
-              <button className="p-4 rounded-lg border-2 border-gray-200 hover:border-[#34d1b4] transition-all duration-300 text-left group">
+              <Link
+                href="/area-cliente/documentos"
+                className="block rounded-lg border-2 border-gray-200 p-4 text-left transition-all duration-300 hover:border-[#34d1b4] group"
+              >
                 <h4 className="font-semibold mb-2 group-hover:text-[#34d1b4]" style={{ color: "#223354" }}>
                   {t("clientArea.viewDocuments") || "Ver Documentos"}
                 </h4>
                 <p className="text-sm text-gray-600">
                   {t("clientArea.viewDocumentsDesc") || "Acesse seus documentos e certificados"}
                 </p>
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -283,7 +329,6 @@ export default function AreaClientePage() {
               </div>
             </div>
           </div>
-        </div>
       </div>
       <Footer />
     </main>

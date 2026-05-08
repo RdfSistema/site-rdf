@@ -1,0 +1,33 @@
+# Exemplo: GitHub Actions runner dentro de Docker na VM, com acesso ao Docker do host
+# para o workflow poder executar `docker compose build/up`.
+#
+# Na VM:
+#   1. Crie um PAT (classic) com scope "repo" (repositório privado) ou só esse repo.
+#   2. cp deploy/github-runner.docker-compose.example.yml ~/github-runner.compose.yml
+#   3. Edite REPO_URL, RUNNER_NAME, e use env GITHUB_ACCESS_TOKEN ou um ficheiro .env ao lado do compose.
+#   4. docker compose -f ~/github-runner.compose.yml up -d
+#
+# No repositório GitHub: Settings → Actions → Runners → New self-hosted runner
+# segue as instruções; as labels devem incluir as que o workflow usa (ex.: self-hosted, Linux, x64).
+#
+# Imagem de referência inclui Docker CLI; montar o socket do host é obrigatório para
+# o job de deploy executar `docker compose` no host. O build da app corre no GitHub
+# (ubuntu-latest); na VM só corre `docker compose -f docker-compose.prod.yml pull/up`.
+
+services:
+  github-runner:
+    image: myoung34/github-runner:latest
+    restart: unless-stopped
+    environment:
+      REPO_URL: "https://github.com/SEU_USUARIO/site-rdf"
+      RUNNER_NAME: "rdf-vm-runner"
+      RUNNER_WORKDIR: /tmp/github-runner
+      ACCESS_TOKEN: ${GITHUB_ACCESS_TOKEN}
+      RUNNER_SCOPE: repo
+      LABELS: "self-hosted,Linux,x64"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - github-runner-data:/tmp/github-runner
+
+volumes:
+  github-runner-data:

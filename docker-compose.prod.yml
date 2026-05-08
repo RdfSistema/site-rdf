@@ -1,0 +1,12 @@
+# Produção na VM (CI): só puxa imagem do GHCR — não faz build no servidor.
+# O workflow define DOCKER_IMAGE no `.env` antes do `pull`.
+
+services:
+  web:
+    image: "${DOCKER_IMAGE:?DOCKER_IMAGE_not_set}"
+    container_name: rdf-site
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:-3000}:3000"
+    env_file:
+      - .env

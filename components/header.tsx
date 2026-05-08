@@ -45,7 +45,7 @@ export default function Header() {
     <>
       {showLoading && <VideoLoading onComplete={handleLoadingComplete} duration={4000} />}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <nav className="mx-auto flex w-full max-w-[min(100%,min(110rem,calc(100vw-1.5rem)))] items-center justify-between px-4 py-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 group">
           <div className="relative w-18 h-18">
@@ -87,8 +87,7 @@ export default function Header() {
               </Link>
               <button
                 onClick={() => {
-                  logout()
-                  router.push("/")
+                  void logout().then(() => router.push("/"))
                 }}
                 className="px-6 py-2 rounded-lg text-white font-semibold transition-all duration-300 hover:shadow-lg transform hover:scale-105"
                 style={{ backgroundColor: "#dc2626" }}
@@ -104,6 +103,12 @@ export default function Header() {
               >
                 {t("header.login")}
               </button>
+              <Link
+                href="/cadastro"
+                className="text-sm font-medium text-gray-500 hover:text-[#34d1b4] transition-colors"
+              >
+                {t("header.register")}
+              </Link>
               <Link
                 href="/tracking"
                 className="px-6 py-2 rounded-lg text-white font-semibold transition-all duration-300 hover:shadow-lg transform hover:scale-105"
@@ -156,9 +161,8 @@ export default function Header() {
                   </Link>
                   <button
                     onClick={() => {
-                      logout()
                       setIsOpen(false)
-                      router.push("/")
+                      void logout().then(() => router.push("/"))
                     }}
                     className="px-4 py-2 rounded-lg text-white font-semibold mt-2 text-center w-full"
                     style={{ backgroundColor: "#dc2626" }}
@@ -177,6 +181,13 @@ export default function Header() {
                   >
                     {t("header.login")}
                   </button>
+                  <Link
+                    href="/cadastro"
+                    onClick={() => setIsOpen(false)}
+                    className="px-4 py-2 rounded-lg text-gray-600 font-medium mt-2 text-center border border-gray-200 hover:bg-gray-50 w-full"
+                  >
+                    {t("header.register")}
+                  </Link>
                   <Link
                     href="/tracking"
                     onClick={() => setIsOpen(false)}

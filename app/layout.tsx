@@ -14,21 +14,9 @@ export const metadata: Metadata = {
   description: "Soluções em comércio exterior e gestão de armazéns com expertise e confiabilidade",
   keywords: "comércio exterior, armazém, logística, importação, exportação",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    icon: [{ url: "/logo.png", type: "image/png" }],
+    shortcut: "/logo.png",
+    apple: "/logo.png",
   },
 }
 

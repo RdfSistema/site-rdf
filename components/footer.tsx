@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="relative">
       {/* Parte superior com fundo escuro */}
       <div className="bg-[#223354] text-white py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[min(100%,min(110rem,calc(100vw-1.5rem)))] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             {/* Logo e Sobre */}
             <div className="md:col-span-1">
@@ -112,7 +112,7 @@ export default function Footer() {
 
       {/* Parte inferior com fundo branco */}
       <div className="bg-white border-t border-gray-200 py-6">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[min(100%,min(110rem,calc(100vw-1.5rem)))] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
           <p className="text-center text-gray-600">
             {t("footer.copyright").replace("{year}", currentYear.toString())}
           </p>

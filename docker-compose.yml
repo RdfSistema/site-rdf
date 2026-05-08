@@ -1,0 +1,16 @@
+# Desenvolvimento / VM sem registry: `docker compose up -d --build`
+# Produção com GitHub Actions + GHCR: ver `docker-compose.prod.yml` e `.github/workflows/prod-deploy.yml`.
+# Variáveis sensíveis: ficheiro `.env` na mesma pasta (não commitar).
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rdf-site:latest
+    container_name: rdf-site
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:-3000}:3000"
+    env_file:
+      - .env

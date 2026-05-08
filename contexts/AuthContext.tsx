@@ -1,76 +1,108 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react"
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react"
 
-interface User {
+export type UserRole = "user" | "admin"
+
+export interface User {
+  id: string
   email: string
   name: string
+  companyName: string
+  role: UserRole
 }
 
 interface AuthContextType {
   user: User | null
-  login: (email: string, password: string) => Promise<boolean>
-  logout: () => void
+  login: (
+    email: string,
+    password: string
+  ) => Promise<{ ok: boolean; error?: string }>
+  logout: () => Promise<void>
   isAuthenticated: boolean
+  isAuthLoading: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-// Credenciais de teste (em produção, isso viria de um backend)
-const TEST_USER = {
-  email: "cliente@rdfcomex.com.br",
-  password: "senha123",
-  name: "Cliente RDF"
+async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(url, {
+    ...init,
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      ...(init?.headers as Record<string, string>),
+    },
+  })
+  return res.json() as Promise<T>
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
+  const [isAuthLoading, setIsAuthLoading] = useState(true)
 
   useEffect(() => {
-    // Carregar usuário salvo do localStorage
-    if (typeof window !== "undefined") {
-      const savedUser = localStorage.getItem("user")
-      if (savedUser) {
-        try {
-          setUser(JSON.parse(savedUser))
-        } catch (error) {
-          console.error("Erro ao carregar usuário:", error)
+    let cancelled = false
+    ;(async () => {
+      setIsAuthLoading(true)
+      try {
+        const data = await fetchJson<{ user: User | null }>("/api/auth/me")
+        if (!cancelled) {
+          setUser(data.user)
         }
+      } catch {
+        if (!cancelled) setUser(null)
+      } finally {
+        if (!cancelled) setIsAuthLoading(false)
       }
+    })()
+    return () => {
+      cancelled = true
     }
   }, [])
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    // Simulação de autenticação
-    // Em produção, isso faria uma chamada para a API
-    if (email === TEST_USER.email && password === TEST_USER.password) {
-      const userData: User = {
-        email: TEST_USER.email,
-        name: TEST_USER.name
-      }
-      setUser(userData)
-      if (typeof window !== "undefined") {
-        localStorage.setItem("user", JSON.stringify(userData))
-      }
-      return true
+  const login = async (email: string, password: string) => {
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    })
+    const data = (await res.json()) as { user?: User; error?: string }
+    if (!res.ok || !data.user) {
+      return { ok: false as const, error: data.error }
     }
-    return false
+    setUser(data.user)
+    return { ok: true as const }
   }
 
-  const logout = () => {
-    setUser(null)
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("user")
+  const logout = async () => {
+    try {
+      await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      })
+    } finally {
+      setUser(null)
     }
   }
 
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      login, 
-      logout, 
-      isAuthenticated: !!user 
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        isAuthenticated: !!user,
+        isAuthLoading,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )
