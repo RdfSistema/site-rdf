@@ -8,7 +8,7 @@
 #   4. docker compose -f ~/github-runner.compose.yml up -d
 #
 # No repositório GitHub: Settings → Actions → Runners → New self-hosted runner
-# segue as instruções; as labels devem incluir as que o workflow usa (ex.: self-hosted, Linux, x64).
+# segue as instruções; as labels devem incluir as que o workflow usa (ex.: self-hosted, Linux, X64).
 #
 # Imagem de referência inclui Docker CLI; montar o socket do host é obrigatório para
 # o job de deploy executar `docker compose` no host. O build da app corre no GitHub
@@ -24,7 +24,7 @@ services:
       RUNNER_WORKDIR: /tmp/github-runner
       ACCESS_TOKEN: ${GITHUB_ACCESS_TOKEN}
       RUNNER_SCOPE: repo
-      LABELS: "self-hosted,Linux,x64"
+      LABELS: "self-hosted,Linux,X64"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - github-runner-data:/tmp/github-runner

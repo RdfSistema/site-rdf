@@ -44,7 +44,7 @@ jobs:
   vm-deploy:
     name: Deploy on VM
     needs: build-and-push
-    runs-on: [self-hosted, Linux, x64]
+    runs-on: [self-hosted, Linux, X64]
     permissions:
       contents: read
       packages: read
