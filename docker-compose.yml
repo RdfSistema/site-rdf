@@ -11,6 +11,6 @@ services:
     container_name: rdf-site
     restart: unless-stopped
     ports:
-      - "${HOST_PORT:-3000}:3000"
+      - "${HOST_PORT:-8080}:3000"
     env_file:
       - .env

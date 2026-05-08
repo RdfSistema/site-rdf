@@ -76,6 +76,18 @@ jobs:
             echo "Neither 'docker compose' nor 'docker-compose' is available on this runner."
             exit 1
           fi
+
+          # Avoid deploy failure when port 8080 is already bound by an old/manual container.
+          CONFLICTING_CONTAINERS=$(docker ps --filter "publish=8080" --format "{{.ID}}")
+          if [ -n "$CONFLICTING_CONTAINERS" ]; then
+            echo "Stopping containers using host port 8080: $CONFLICTING_CONTAINERS"
+            docker stop $CONFLICTING_CONTAINERS || true
+            docker rm $CONFLICTING_CONTAINERS || true
+          fi
+
+          # Remove stale container with the same fixed name used by compose.
+          docker rm -f rdf-site >/dev/null 2>&1 || true
+
           $COMPOSE_CMD -f docker-compose.prod.yml pull
           $COMPOSE_CMD -f docker-compose.prod.yml up -d --remove-orphans
 
