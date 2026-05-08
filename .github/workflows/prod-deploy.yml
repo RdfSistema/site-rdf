@@ -59,6 +59,9 @@ jobs:
           echo '${{ secrets.PROD_ENV_FILE }}' > .env
           grep -v '^DOCKER_IMAGE=' .env > .env.tmp && mv .env.tmp .env
           echo "DOCKER_IMAGE=${{ needs.build-and-push.outputs.image_lower }}:latest" >> .env
+          if ! grep -q '^HOST_PORT=' .env; then
+            echo "HOST_PORT=8080" >> .env
+          fi
 
       - uses: docker/login-action@v3
         with:
@@ -77,16 +80,22 @@ jobs:
             exit 1
           fi
 
-          # Avoid deploy failure when port 8080 is already bound by an old/manual container.
-          CONFLICTING_CONTAINERS=$(docker ps --filter "publish=8080" --format "{{.ID}}")
+          HOST_PORT=$(awk -F= '/^HOST_PORT=/{print $2}' .env | tail -n1)
+          HOST_PORT=${HOST_PORT:-8080}
+
+          # Avoid deploy failure when the host port is already bound by old/manual containers.
+          CONFLICTING_CONTAINERS=$(docker ps --format "{{.ID}} {{.Ports}}" | awk -v p="$HOST_PORT" '$0 ~ ("0\\.0\\.0\\.0:" p "->") || $0 ~ ("\\[::\\]:" p "->") {print $1}')
           if [ -n "$CONFLICTING_CONTAINERS" ]; then
-            echo "Stopping containers using host port 8080: $CONFLICTING_CONTAINERS"
+            echo "Stopping containers using host port $HOST_PORT: $CONFLICTING_CONTAINERS"
             docker stop $CONFLICTING_CONTAINERS || true
             docker rm $CONFLICTING_CONTAINERS || true
           fi
 
           # Remove stale container with the same fixed name used by compose.
           docker rm -f rdf-site >/dev/null 2>&1 || true
+
+          # Ensure previous stack state is cleaned before recreating.
+          $COMPOSE_CMD -f docker-compose.prod.yml down --remove-orphans || true
 
           $COMPOSE_CMD -f docker-compose.prod.yml pull
           $COMPOSE_CMD -f docker-compose.prod.yml up -d --remove-orphans
