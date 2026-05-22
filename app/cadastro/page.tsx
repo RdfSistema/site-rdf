@@ -2,15 +2,19 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import {
+  ArrowRight,
   Building2,
+  CheckCircle,
+  ClipboardCheck,
   FileBadge,
   Lock,
   Mail,
   Phone,
   Sparkles,
+  Truck,
   User,
+  Warehouse,
 } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
 import { formatCnpjInput } from "@/lib/cnpj"
@@ -40,7 +44,6 @@ const labelClass = "mb-1.5 flex items-center gap-2 text-sm font-semibold text-[#
 
 export default function CadastroPage() {
   const { t } = useLanguage()
-  const router = useRouter()
   const [name, setName] = useState("")
   const [companyName, setCompanyName] = useState("")
   const [cnpj, setCnpj] = useState("")
@@ -51,6 +54,7 @@ export default function CadastroPage() {
   const [howHeard, setHowHeard] = useState<HowHeardValue | "">("")
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const howHeardLabel = (key: HowHeardValue) =>
     t(`register.howHeardOptions.${key}`) || key
@@ -83,7 +87,8 @@ export default function CadastroPage() {
         return
       }
 
-      router.push("/login?registered=1")
+      setIsLoading(false)
+      setShowSuccess(true)
     } catch {
       setError(t("register.errorGeneric"))
       setIsLoading(false)
@@ -104,7 +109,150 @@ export default function CadastroPage() {
       </div>
 
       <Header />
-      <div className="relative mx-auto w-full max-w-[min(100%,min(110rem,calc(100vw-1.5rem)))] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-8 sm:py-10">
+
+      {showSuccess ? (
+        <div className="relative mx-auto w-full max-w-[min(100%,min(110rem,calc(100vw-1.5rem)))] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-8 sm:py-10">
+          <div className="overflow-hidden rounded-2xl border border-[#34d1b4]/25 bg-white shadow-[0_20px_50px_-12px_rgba(34,51,84,0.16)]">
+            <div
+              className="h-1.5 w-full"
+              style={{
+                background: "linear-gradient(90deg, #34d1b4 0%, #2ab59c 35%, #223354 100%)",
+              }}
+            />
+
+            <div className="grid gap-0 lg:grid-cols-[1fr_0.85fr]">
+              <section className="px-5 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#34d1b4]/15 text-[#0d6b5c]">
+                    <CheckCircle className="h-8 w-8" aria-hidden />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0d6b5c]">
+                      {t("register.successBadge")}
+                    </p>
+                    <h1 className="mt-1 text-2xl font-bold tracking-tight text-[#223354] lg:text-3xl">
+                      {t("register.successTitle")}
+                    </h1>
+                  </div>
+                </div>
+
+                <p className="mt-5 max-w-2xl text-sm leading-relaxed text-gray-600 lg:text-base">
+                  {t("register.successSubtitle")}
+                </p>
+
+                <div className="mt-6 rounded-2xl border border-[#34d1b4]/25 bg-[#34d1b4]/5 p-5">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-[#0d6b5c] shadow-sm">
+                      <Mail className="h-5 w-5" aria-hidden />
+                    </div>
+                    <div className="min-w-0">
+                      <h2 className="text-base font-bold text-[#223354]">
+                        {t("register.successEmailTitle")}
+                      </h2>
+                      <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                        {t("register.successEmailText")}{" "}
+                        <span className="break-all font-semibold text-[#223354]">
+                          {email}
+                        </span>
+                        .
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  {[
+                    {
+                      icon: ClipboardCheck,
+                      title: t("register.successStep1Title"),
+                      text: t("register.successStep1Text"),
+                    },
+                    {
+                      icon: Warehouse,
+                      title: t("register.successStep2Title"),
+                      text: t("register.successStep2Text"),
+                    },
+                    {
+                      icon: Truck,
+                      title: t("register.successStep3Title"),
+                      text: t("register.successStep3Text"),
+                    },
+                  ].map((item) => {
+                    const Icon = item.icon
+                    return (
+                      <div
+                        key={item.title}
+                        className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm"
+                      >
+                        <Icon className="h-5 w-5 text-[#34d1b4]" aria-hidden />
+                        <h3 className="mt-3 text-sm font-bold text-[#223354]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-1 text-xs leading-relaxed text-gray-500">
+                          {item.text}
+                        </p>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-900">
+                  {t("register.successNoAutoLogin")}
+                </div>
+
+                <div className="mt-8 flex flex-col gap-3 sm:max-w-xs">
+                  <Link
+                    href="/login"
+                    className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg sm:text-base"
+                    style={{ backgroundColor: "#34d1b4" }}
+                  >
+                    <span
+                      className="absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
+                      style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent)" }}
+                    />
+                    <span className="relative flex items-center gap-2">
+                      {t("register.successLoginButton")}
+                      <ArrowRight className="h-4 w-4" aria-hidden />
+                    </span>
+                  </Link>
+                </div>
+              </section>
+
+              <aside className="border-t border-gray-100 bg-[#223354] px-5 py-8 text-white sm:px-8 lg:border-l lg:border-t-0 lg:px-8 lg:py-12">
+                <div className="flex h-full flex-col justify-between gap-8">
+                  <div>
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-[#34d1b4]">
+                      <Warehouse className="h-4 w-4" aria-hidden />
+                      {t("register.successPanelBadge")}
+                    </div>
+                    <h2 className="mt-5 text-xl font-bold">
+                      {t("register.successPanelTitle")}
+                    </h2>
+                    <p className="mt-3 text-sm leading-relaxed text-white/75">
+                      {t("register.successPanelText")}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                      <span className="text-sm text-white/70">
+                        {t("register.successStatusLabel")}
+                      </span>
+                      <span className="rounded-full bg-[#34d1b4]/20 px-3 py-1 text-xs font-bold text-[#34d1b4]">
+                        {t("register.successStatusValue")}
+                      </span>
+                    </div>
+                    <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-relaxed text-white/75">
+                      {t("register.successPanelNote")}
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="relative mx-auto w-full max-w-[min(100%,min(110rem,calc(100vw-1.5rem)))] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-8 sm:py-10">
           <div className="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-[0_20px_50px_-12px_rgba(34,51,84,0.12)]">
             <div
               className="h-1.5 w-full"
@@ -366,7 +514,8 @@ export default function CadastroPage() {
               </p>
             </div>
           </div>
-      </div>
+        </div>
+      )}
       <Footer />
     </main>
   )

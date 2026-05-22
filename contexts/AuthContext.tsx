@@ -7,6 +7,13 @@ import {
   useState,
   type ReactNode,
 } from "react"
+import { onAuthStateChanged } from "firebase/auth"
+import { getFirebaseAuth } from "@/lib/firebase"
+import {
+  loginWithFirebase,
+  logoutFromFirebase,
+  syncSessionFromFirebaseUser,
+} from "@/lib/auth-client"
 
 export type UserRole = "user" | "admin"
 
@@ -31,16 +38,10 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(url, {
-    ...init,
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...(init?.headers as Record<string, string>),
-    },
-  })
-  return res.json() as Promise<T>
+async function fetchMe(): Promise<User | null> {
+  const res = await fetch("/api/auth/me", { credentials: "include" })
+  const data = (await res.json()) as { user: User | null }
+  return data.user
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -49,45 +50,52 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let cancelled = false
-    ;(async () => {
+
+    const loadUser = async () => {
       setIsAuthLoading(true)
       try {
-        const data = await fetchJson<{ user: User | null }>("/api/auth/me")
+        const synced = await syncSessionFromFirebaseUser()
+        if (cancelled) return
+        if (synced) {
+          setUser(synced)
+          return
+        }
+        const fromCookie = await fetchMe()
         if (!cancelled) {
-          setUser(data.user)
+          setUser(fromCookie)
         }
       } catch {
         if (!cancelled) setUser(null)
       } finally {
         if (!cancelled) setIsAuthLoading(false)
       }
-    })()
+    }
+
+    void loadUser()
+
+    const auth = getFirebaseAuth()
+    const unsubscribe = onAuthStateChanged(auth, () => {
+      void loadUser()
+    })
+
     return () => {
       cancelled = true
+      unsubscribe()
     }
   }, [])
 
   const login = async (email: string, password: string) => {
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    })
-    const data = (await res.json()) as { user?: User; error?: string }
-    if (!res.ok || !data.user) {
-      return { ok: false as const, error: data.error }
+    const result = await loginWithFirebase(email, password)
+    if (!result.ok) {
+      return { ok: false as const, error: result.error }
     }
-    setUser(data.user)
+    setUser(result.user)
     return { ok: true as const }
   }
 
   const logout = async () => {
     try {
-      await fetch("/api/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      })
+      await logoutFromFirebase()
     } finally {
       setUser(null)
     }

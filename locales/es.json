@@ -177,7 +177,26 @@
     "submitting": "Enviando...",
     "alreadyAccount": "¿Ya tiene cuenta?",
     "loginLink": "Entrar",
-    "errorGeneric": "No se pudo completar el registro. Intente nuevamente."
+    "errorGeneric": "No se pudo completar el registro. Intente nuevamente.",
+    "successBadge": "Registro recibido",
+    "successTitle": "Registro realizado con éxito",
+    "successSubtitle": "Sus datos fueron enviados al equipo RDF para revisión. La aprobación tarda como máximo entre 40 minutos y 1 hora. Cuando el acceso sea autorizado, recibirá una confirmación por correo para poder iniciar sesión en el sistema.",
+    "successEmailTitle": "Espere la autorización por correo",
+    "successEmailText": "La confirmación será enviada a",
+    "successStep1Title": "Solicitud recibida",
+    "successStep1Text": "Su solicitud entró en la fila de atención.",
+    "successStep2Title": "Revisión RDF",
+    "successStep2Text": "El equipo valida los datos antes de liberar el acceso.",
+    "successStep3Title": "Acceso liberado",
+    "successStep3Text": "Después de la autorización, vuelva al login para entrar.",
+    "successNoAutoLogin": "Importante: el sistema no libera login automático después del registro. El acceso solo podrá hacerse después de la autorización enviada por correo.",
+    "successLoginButton": "Volver a la pantalla de login",
+    "successPanelBadge": "Flujo de acceso",
+    "successPanelTitle": "Su solicitud está en revisión",
+    "successPanelText": "Este proceso ayuda a mantener el área del cliente organizada, segura y conectada a los datos correctos de la operación logística.",
+    "successStatusLabel": "Estado actual",
+    "successStatusValue": "Esperando autorización",
+    "successPanelNote": "Mientras tanto, no intente acceder directamente al área del cliente. Use el login solo después de recibir la confirmación. El plazo máximo previsto es de 40 minutos a 1 hora."
   },
   "clientArea": {
     "welcome": "Bienvenido a su Área del Cliente",
@@ -268,4 +287,3 @@
     "newsContent5": "El Puerto de Itajaí inició obras de modernización que incluyen ampliación de patios, nuevos equipos de manejo y sistema automatizado de seguimiento de carga."
   }
 }
-

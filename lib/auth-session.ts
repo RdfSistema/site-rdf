@@ -14,6 +14,7 @@ export type SessionPayload = {
   sub: string
   email: string
   name: string
+  companyName: string
   role: string
 }
 
@@ -21,6 +22,7 @@ export async function createSessionToken(payload: SessionPayload): Promise<strin
   return new SignJWT({
     email: payload.email,
     name: payload.name,
+    companyName: payload.companyName,
     role: payload.role,
   })
     .setProtectedHeader({ alg: 'HS256' })
@@ -42,6 +44,7 @@ export async function readSessionToken(token: string): Promise<SessionPayload> {
     sub,
     email: String(payload.email ?? ''),
     name: String(payload.name ?? ''),
+    companyName: String(payload.companyName ?? ''),
     role: String(payload.role ?? 'user'),
   }
 }

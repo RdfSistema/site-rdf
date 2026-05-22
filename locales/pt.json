@@ -177,7 +177,26 @@
     "submitting": "Enviando...",
     "alreadyAccount": "Já tem conta?",
     "loginLink": "Entrar",
-    "errorGeneric": "Não foi possível concluir o cadastro. Tente novamente."
+    "errorGeneric": "Não foi possível concluir o cadastro. Tente novamente.",
+    "successBadge": "Cadastro recebido",
+    "successTitle": "Cadastro realizado com sucesso",
+    "successSubtitle": "Seus dados foram enviados para conferência da equipe RDF. A aprovação leva no máximo entre 40 minutos e 1 hora. Assim que o acesso for autorizado, você receberá uma confirmação no seu e-mail para poder fazer login no sistema.",
+    "successEmailTitle": "Aguarde a autorização por e-mail",
+    "successEmailText": "A confirmação será enviada para",
+    "successStep1Title": "Cadastro recebido",
+    "successStep1Text": "Sua solicitação entrou na fila de atendimento.",
+    "successStep2Title": "Conferência RDF",
+    "successStep2Text": "A equipe valida os dados antes de liberar o acesso.",
+    "successStep3Title": "Acesso liberado",
+    "successStep3Text": "Depois da autorização, volte ao login para entrar.",
+    "successNoAutoLogin": "Importante: o sistema não libera login automático após o cadastro. O acesso só poderá ser feito depois da autorização enviada por e-mail.",
+    "successLoginButton": "Voltar para a tela de login",
+    "successPanelBadge": "Fluxo de acesso",
+    "successPanelTitle": "Sua solicitação segue em conferência",
+    "successPanelText": "Esse processo ajuda a manter a área do cliente organizada, segura e conectada aos dados corretos da operação logística.",
+    "successStatusLabel": "Status atual",
+    "successStatusValue": "Aguardando autorização",
+    "successPanelNote": "Enquanto isso, não tente acessar diretamente a área do cliente. Use o login somente depois de receber a confirmação. O prazo máximo previsto é de 40 minutos a 1 hora."
   },
   "clientArea": {
     "welcome": "Bem-vindo à sua Área do Cliente",
@@ -268,4 +287,3 @@
     "newsContent5": "O Porto de Itajaí iniciou obras de modernização que incluem ampliação de pátios, novos equipamentos de movimentação e sistema automatizado de rastreamento de cargas."
   }
 }
-

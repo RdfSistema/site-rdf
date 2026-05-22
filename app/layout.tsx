@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import FirebaseAnalytics from "@/components/firebase-analytics"
 import { LanguageProvider } from "@/contexts/LanguageContext"
 import { AuthProvider } from "@/contexts/AuthContext"
 import "./globals.css"
@@ -34,6 +35,7 @@ export default function RootLayout({
           </AuthProvider>
         </LanguageProvider>
         <Analytics />
+        <FirebaseAnalytics />
       </body>
     </html>
   )

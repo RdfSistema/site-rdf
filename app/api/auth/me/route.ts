@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server'
-import { ObjectId } from 'mongodb'
 import { cookies } from 'next/headers'
-import { getDb } from '@/lib/mongodb'
 import { AUTH_COOKIE_NAME, readSessionToken } from '@/lib/auth-session'
-import { usersCollection } from '@/lib/users'
+import type { UserRole } from '@/lib/user-profile'
 
 export const runtime = 'nodejs'
 
@@ -15,35 +13,20 @@ export async function GET() {
       return NextResponse.json({ user: null })
     }
 
-    let session: { sub: string }
+    let session: Awaited<ReturnType<typeof readSessionToken>>
     try {
       session = await readSessionToken(token)
     } catch {
       return NextResponse.json({ user: null })
     }
 
-    if (!ObjectId.isValid(session.sub)) {
-      return NextResponse.json({ user: null })
-    }
-
-    const db = await getDb()
-    const users = usersCollection(db)
-    const doc = await users.findOne(
-      { _id: new ObjectId(session.sub) },
-      { projection: { passwordHash: 0 } }
-    )
-
-    if (!doc) {
-      return NextResponse.json({ user: null })
-    }
-
     return NextResponse.json({
       user: {
-        id: doc._id.toString(),
-        email: doc.email,
-        name: doc.name,
-        companyName: doc.companyName ?? '',
-        role: doc.role ?? 'user',
+        id: session.sub,
+        email: session.email,
+        name: session.name,
+        companyName: session.companyName,
+        role: (session.role === 'admin' ? 'admin' : 'user') as UserRole,
       },
     })
   } catch (err) {

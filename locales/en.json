@@ -177,7 +177,26 @@
     "submitting": "Submitting...",
     "alreadyAccount": "Already have an account?",
     "loginLink": "Sign in",
-    "errorGeneric": "Could not complete registration. Please try again."
+    "errorGeneric": "Could not complete registration. Please try again.",
+    "successBadge": "Registration received",
+    "successTitle": "Registration completed successfully",
+    "successSubtitle": "Your details were sent to the RDF team for review. Approval takes up to 40 minutes to 1 hour. Once access is authorized, you will receive an email confirmation so you can sign in to the system.",
+    "successEmailTitle": "Wait for email authorization",
+    "successEmailText": "The confirmation will be sent to",
+    "successStep1Title": "Request received",
+    "successStep1Text": "Your request entered the service queue.",
+    "successStep2Title": "RDF review",
+    "successStep2Text": "The team validates the details before releasing access.",
+    "successStep3Title": "Access released",
+    "successStep3Text": "After authorization, return to login to enter.",
+    "successNoAutoLogin": "Important: the system does not allow automatic login after registration. Access is only available after the email authorization is sent.",
+    "successLoginButton": "Back to login",
+    "successPanelBadge": "Access flow",
+    "successPanelTitle": "Your request is under review",
+    "successPanelText": "This process helps keep the client area organized, secure, and connected to the correct logistics operation data.",
+    "successStatusLabel": "Current status",
+    "successStatusValue": "Awaiting authorization",
+    "successPanelNote": "For now, do not try to access the client area directly. Use login only after receiving confirmation. The expected maximum timeframe is 40 minutes to 1 hour."
   },
   "clientArea": {
     "welcome": "Welcome to your Client Area",
@@ -268,4 +287,3 @@
     "newsContent5": "The Port of Itajaí began modernization works that include yard expansion, new handling equipment and an automated cargo tracking system."
   }
 }
-
